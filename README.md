@@ -1,6 +1,6 @@
 # Self Supervised Retinal Thickness prediction using Deep Learning
 
-The repository contains the code and partial data for for the paper: https://www.biorxiv.org/content/10.1101/861757v1
+The repository contains the code and partial data for for the manuscript: https://www.biorxiv.org/content/10.1101/861757v1
 
 The repository contains 5 main parts.
 
@@ -72,17 +72,17 @@ To calculate high resolution thickness maps for the DICOM files in the ~/data di
 
 Note: img_shape should be the same OCT dimension used in the thickness segmentation task. save_octs and save_segmentations is by default set to true, this saves each individual OCT and tissue segmentation in the DICOM directory. Thickness map dim is set to 128 as determined sufficient for accurate thickness map regression.
 
-As stated in paper, the quality of the ground truth thickness map can vary considerably depending on various factors. Most importantly, low quality OCT scans present in real world data can cause low quality examples. For this reason, in ~/quality_filter total variation is calculated for each record and saved in ~/quality_filter/tv_pd.csv. This csv can then be used to filter out to low quality thickness maps from training and evaluation. The value of the choosen threshold will affect the reported results of the thickness regressor. In this project the value 0.014 was choosen after visual inspection of several maps and their quality, on both sides of this threshold.
+As stated in manuscript, the quality of the ground truth thickness map can vary considerably depending on various factors. Most importantly, low quality OCT scans present in real world data can cause low quality examples. For this reason, in ~/quality_filter total variation is calculated for each record and saved in ~/quality_filter/tv_pd.csv. This csv can then be used to filter out to low quality thickness maps from training and evaluation. The value of the choosen threshold will affect the reported results of the thickness regressor. In this project the value 0.014 was choosen after visual inspection of several maps and their quality, on both sides of this threshold.
  
 To generate the tv_ps.csv run log_tv.py and ensure that the path to the calculated thickness map is set directly in the log_tv.py.
 
-With the example DICOM files provided all have a total variation below the threshold of 0.014 which corresponds to 4.19 micro meters as stated in the paper. 
+With the example DICOM files provided all have a total variation below the threshold of 0.014 which corresponds to 4.19 micro meters as stated in the manuscript. 
 
 #### Thickness map prediction
 
 In order to run the Thickness prediction model (DeepRT) place all your coregistered fundus images and thickness maps in ~/data/fundus and ~/data/thickness_maps as in data sample provide. Further in ~/data/filenames provide .csv files for train, validation and test samples as in test sample. 
 
-Before training the model, configure params.json, here the default parameters are set as used in paper. "enc_filters" here regulates the size of the encoder. In the paper the results are achieved using "enc_filters" = 8 for the DeepRT light model. 
+Before training the model, configure params.json, here the default parameters are set as used in manuscript. "enc_filters" here regulates the size of the encoder. In the manuscript the results are achieved using "enc_filters" = 8 for the DeepRT light model. 
 
 Once trained, find model in the ~/logs directory.
 
@@ -108,9 +108,9 @@ Model directories are as usual logged in the ~/logs folder. To evaluate the mode
 
 ### Prerequisites
 
-## Authors
-
-* **Olle Holmberg**: https://www.linkedin.com/in/olle-holmberg-2ba23152/
+Manuscript: https://www.biorxiv.org/content/10.1101/861757v1
 
 ## Acknowledgments
+
+Thanks to all our collaborators at the LMU eyeclinic and all other collegues contributing with advice and experience. 
 
