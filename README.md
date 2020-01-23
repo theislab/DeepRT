@@ -12,7 +12,23 @@ The repository contains 5 main parts.
 
 ## Getting Started
 
-Install all software requirements listed in the requirements.txt. Main tools used are Python and Tensorflow.
+To set up a working example, clone the github repository and install all software requirements listed in the requirements.txt. Main tools used are Python and Tensorflow.
+
+In order to run illustrative examples four downloads are required from: https://doi.org/10.5281/zenodo.3626020
+
+Below are the four necessary file to download:
+
+* DeepRT_light.tar.gz
+* ssl_data_sample.tar.gz
+* thickness_segmentation_data.tar.gz
+* thickness_segmentation_model.tar.gz
+
+1. Extract DeepRT_light.tar.gz and place the file in ~/ssl_kaggle/pretrained_weights directory.
+2. Extract ssl_data_sample.tar.gz and put in the ~/ssl_kaggle as the data folder
+3. Extract thickness_segmentation_data.tar.gz put in ~/thickness_segmentation
+4. Extract thickness_segmentation_model and put in ~/thickness_map_calculation/output folder
+
+Once repository is set up locally with all code and correctly placed data, follow below instructions for each step.
 
 #### Thickness segmentation
 
@@ -90,4 +106,11 @@ Note: Using grid search the optimal parameters for ResNet50 with Imagenet Init w
 
 Model directories are as usual logged in the ~/logs folder. To evaluate the model on the test data, specify the model directory and model of interest  in the evaluation.py file and run it. A result.txt file with all the main metrics will be saved in the model directory among others. 
 
+### Prerequisites
+
+## Authors
+
+* **Olle Holmberg**: https://www.linkedin.com/in/olle-holmberg-2ba23152/
+
+## Acknowledgments
 
