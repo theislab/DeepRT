@@ -90,11 +90,4 @@ Note: Using grid search the optimal parameters for ResNet50 with Imagenet Init w
 
 Model directories are as usual logged in the ~/logs folder. To evaluate the model on the test data, specify the model directory and model of interest  in the evaluation.py file and run it. A result.txt file with all the main metrics will be saved in the model directory among others. 
 
-### Prerequisites
-
-## Authors
-
-* **Olle Holmberg**: https://www.linkedin.com/in/olle-holmberg-2ba23152/
-
-## Acknowledgments
 
