@@ -1,0 +1,11 @@
+{
+    "learning_rate": 0.001,
+    "batch_size": 4,
+    "epochs": 100,
+    "img_shape": 512,
+    "n_filters": 64,
+    "num_classes": 11,
+    "continue_training":0,
+    "data_path": "./data",
+    "dropout": 0.2
+}

@@ -1,0 +1,8 @@
+{
+    "learning_rate": 0.001,
+    "batch_size": 10,
+    "num_epochs": 30,
+    "img_shape": 512,
+    "continue_training": 0,
+    "momentum": 0.9
+}

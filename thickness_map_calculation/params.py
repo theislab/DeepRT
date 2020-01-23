@@ -1,0 +1,9 @@
+params = {}
+params["img_shape"] = (256, 256, 3)
+params["batch_size"] = 2
+params["epochs"] = 1
+params["learning_rate"] = 0.001
+params["continuing_training"] = False
+params["data_dir"] = "./data"
+params["save_path"] = "./output"
+params["loss_function"] = "dice_loss"
