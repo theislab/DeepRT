@@ -32,6 +32,14 @@ Once repository is set up locally with all code and correctly placed data, follo
 
 ## Thickness segmentation
 
+To train a new model with same parameters as in manuscript, run main.py. The model is then stored in the ~/thickness_segmentation/logs directory. 
+
+To evaluate the model set the path to your model in the evaluation.py file (model_dir = ...). Then run evaluation.py.
+
+Note: If changes are made to the model in main.py, same changes need to be propagated to the evaluation file such that the weights can load properly. 
+
+**Data:**
+
 Find all images and segmentation masks used in ./thickness_segmentation/data.
 
 The program uses filenames to read the records, see ~/data/file_names_complete folder. The records are pre split between train, validation and test for easy validation.
@@ -40,18 +48,20 @@ The program uses filenames to read the records, see ~/data/file_names_complete f
 * ~/data/file_names_complete/train_new_old_mapping.csv
 * ~/data/file_names_complete/validation_new_old_mapping.csv
 
-These csv files contain a column named "new_id" which contains correspond to the image ids present in the record folders.
+These csv files contain a column named "new_id" which correspond to the image ids present in the record folders.
 
-Note: The algorithm is trained on OCT images from both Spectralis and Topcon devices. Which images were obtained with each device is present in the ~/data/file_names_spectralis and ~/data/file_names_topcon folder.
+Note: The algorithm is trained on OCT images from both Spectralis and Topcon devices. Which images were obtained with each device is present in the ~/data/file_names_spectralis and ~/data/file_names_topcon folders.
 
 The Topcon images were obtained from the following publication: Menke, M. N., Dabov, S., Knecht, P. & Sturm, V. Reproducibility of retinal thickness measurements in patients with age-related macular degeneration using 3D Fourier-domain optical coherence tomography (OCT) (Topcon 3D-OCT 1000). Acta Ophthalmol. 89, 346–351 (2011)
 
-To re-train the algorithm, run the main.py file with parameters set in the params.json config file (learning rate, epochs among others, see params.json).
+**Additional training information:**
 
-The main.py file creates a model directory in the ~/logs directory. To evaluate the trained model, run evaluation.py with specified model directory directly in the python program. The evaluation.py program will mainly do two things.
+The main.py file automatically creates a model directory in the ~/logs directory. When evaluating the model, evaluation.py will mainly do two things.
 
-* save plots of OCT, grount truth annotations and predicted annotations masks in the ~/logs/model_dir/test_predictions folder. 
-* save a result.csv file logging the IOU score for each induvidual test record, later to be used for plotting.
+* save plots of OCTs, grount truth annotations and predicted annotations masks in the ~/logs/model_dir/test_predictions folder.
+* save .csv files with the jaccard index for train, test, validation as well as Topcon and Spectralis records seperately. 
+
+These files are then loaded to create the boxplot from Figure 1a in manuscript.
 
 ## Thickness map calculation
 
