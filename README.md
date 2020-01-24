@@ -11,7 +11,6 @@ The repository contains 5 main parts.
 * Retinal screening evaluation
 
 ## Getting Started
-===========
 To set up a working example, clone the github repository and install all software requirements listed in the requirements.txt. Main tools used are Python and Tensorflow.
 
 In order to run illustrative examples four downloads are required from: https://doi.org/10.5281/zenodo.3626020
@@ -30,7 +29,7 @@ Below are the four necessary file to download:
 
 Once repository is set up locally with all code and correctly placed data, follow below instructions for each step.
 
-#### Thickness segmentation
+## Thickness segmentation
 
 In the folder ./thickness_segmentation/data please locate all images and segmentation masks in the ~/all_images and ~/all_labels folder.
 
@@ -51,7 +50,7 @@ The main.py file creates a model directory in the ~/logs directory. To evaluate 
 * save plots of OCT, annotation and predicted annotation mask in the ~/model_dir/test_predictions folder. 
 * save a result.csv file logging the IOU score for each induvidual test record, later to be used for plotting.
 
-#### Thickness map calculation
+## Thickness map calculation
 
 To calculate high resolution thickness maps based on OCT DICOM exports store all DICOM files the ~/data directory. In the example directory in this repository the ~/data folder contains subfolders with the following names:
 
@@ -78,7 +77,7 @@ To generate the tv_ps.csv run log_tv.py and ensure that the path to the calculat
 
 With the example DICOM files provided all have a total variation below the threshold of 0.014 which corresponds to 4.19 micro meters as stated in the manuscript. 
 
-#### Thickness map prediction
+## Thickness map prediction
 
 In order to run the Thickness prediction model (DeepRT) place all your coregistered fundus images and thickness maps in ~/data/fundus and ~/data/thickness_maps as in data sample provide. Further in ~/data/filenames provide .csv files for train, validation and test samples as in test sample. 
 
@@ -90,7 +89,7 @@ To evaluate the model and produce all the test statistics used for the plots in 
 
 Note: in order to produce results on thickness prediction test errors for edema and atrophy cases, put the file gold_standard.csv in the ~/data/gold_standard directory, see test data for example format. Important here is that the file names are of the same format as in other examples.  
 
-#### Transfer learning onto the Kaggle Diabetic Retinopathy data set
+## Transfer learning onto the Kaggle Diabetic Retinopathy data set
 
 In order to run the evaluation of transferring DeepRT weights vs. random and Imagenet initialization the first step is to download the data publicly available at: https://www.kaggle.com/c/diabetic-retinopathy-detection/data.
 
