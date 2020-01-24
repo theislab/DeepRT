@@ -70,7 +70,7 @@ Also create a ~/thickness_maps directory for saving the calculated thickness map
 
 To calculate high resolution thickness maps for the DICOM files in the ~/data directory, configure the following parameters in the main.py file:
 
-* img shape = (256, 256, 3)
+* img shape = (512, 512, 3)
 * save_octs = True
 * save_segmentations = True
 * thickness_map_dim = 128
