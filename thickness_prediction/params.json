@@ -1,0 +1,13 @@
+{
+    "learning_rate": 0.001,
+    "batch_size": 10,
+    "num_epochs": 100,
+    "img_shape": 256,
+    "dropout": 0.1,
+    "continue_training":0,
+    "enc_filters": 8,
+    "dec_filters": 32,
+    "kernel_size": 5,
+    "momentum": 0.9
+}
+

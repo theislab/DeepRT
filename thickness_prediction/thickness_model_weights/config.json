@@ -1,0 +1,15 @@
+{
+    "learning_rate": "0.001",
+    "batch_size": "8",
+    "num_epochs": "80",
+    "img_shape": "256",
+    "continue_training": "0",
+    "model_iter": "3",
+    "num_filters": "32",
+    "brightness_range_bootom": "1.0",
+    "brightness_range_top": "1.0",
+    "data_partition": "100",
+    "number_epoch_drop": "15",
+    "weights_init": "0",
+    "model":"ressnet"
+}
