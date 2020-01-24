@@ -56,7 +56,11 @@ The Topcon images were obtained from the following publication: Menke, M. N., Da
 
 **Additional training information:**
 
-The main.py file automatically creates a model directory in the ~/logs directory. When evaluating the model, evaluation.py will mainly do two things.
+The main.py file automatically creates a model directory in the ~/thickness_segmentation/logs directory. For housekeeping, the program removed any directory in ~/thickness_segmentation/logs that does not contain a **weights.hdf5** file. 
+
+Note: Any housekeeping features can be remove in utils.py file.
+
+When evaluating the model, evaluation.py will mainly do two things.
 
 * save plots of OCTs, grount truth annotations and predicted annotations masks in the ~/logs/model_dir/test_predictions folder.
 * save .csv files with the jaccard index for train, test, validation as well as Topcon and Spectralis records seperately. 
