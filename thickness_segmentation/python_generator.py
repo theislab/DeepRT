@@ -5,6 +5,7 @@ import os
 import random
 import skimage as sk
 from skimage.transform import AffineTransform, warp
+from PIL import Image, ImageOps
 
 
 class DataGenerator(keras.utils.Sequence):
@@ -52,6 +53,13 @@ class DataGenerator(keras.utils.Sequence):
             im = cv2.imread(os.path.join(self.data_path, "all_images", str(ID) + '.png'))
             lbl = cv2.imread(os.path.join(self.data_path, "all_labels", str(ID) + '.png'))[:, :, 0]
 
+            # if image is color inverted, we invert it back to dark background
+            if str(ID) in ["13", "14", "23", "27", "29", "30", "35", "40", "48", "50", "60", "67",
+                      "72", "110", "121", "124", "125", "133", "135", "140", "143", "149", "150"]:
+
+                # if light image, invert pixels
+                im = np.array(ImageOps.invert(Image.fromarray(im)))
+
             # turn to one and zeros
             lbl = lbl / 255
 
@@ -73,6 +81,7 @@ class DataGenerator(keras.utils.Sequence):
 
         # scaling
         train_im = np.divide(train_im, 255., dtype = np.float32)
+
         # label_im = np.nan_to_num(label_im)
         train_im = np.nan_to_num(train_im)
         if self.is_training:
@@ -170,6 +179,12 @@ class DataGenerator(keras.utils.Sequence):
         im = cv2.imread(os.path.join(self.data_path, "all_images", str(self.list_IDs[record_idx]) + '.png'))
         lbl = cv2.imread(os.path.join(self.data_path, "all_labels", str(self.list_IDs[record_idx]) + '.png'))[:, :, 0]
 
+        # if image is color inverted, we invert it back to dark background
+        if str(id) in ["13", "14", "23", "27", "29", "30", "35", "40", "48", "50", "60", "67",
+                       "72", "110", "121", "124", "125", "133", "135", "140", "143", "149", "150"]:
+            # if light image, invert pixels
+            im = np.array(ImageOps.invert(Image.fromarray(im)))
+
         # turn to one and zeros
         lbl = lbl / 255
 
@@ -194,6 +209,12 @@ class DataGenerator(keras.utils.Sequence):
     def get_record(self, id):
         im = cv2.imread(os.path.join(self.data_path, "all_images", str(id) + '.png'))
         lbl = cv2.imread(os.path.join(self.data_path, "all_labels", str(id) + '.png'))[:, :, 0]
+
+        # if image is color inverted, we invert it back to dark background
+        if str(id) in ["13", "14", "23", "27", "29", "30", "35", "40", "48", "50", "60", "67",
+                       "72", "110", "121", "124", "125", "133", "135", "140", "143", "149", "150"]:
+            # if light image, invert pixels
+            im = np.array(ImageOps.invert(Image.fromarray(im)))
 
         # turn to one and zeros
         lbl = lbl / 255
