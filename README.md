@@ -1,18 +1,18 @@
 # Self Supervised Retinal Thickness prediction using Deep Learning
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 The repository contains the code and partial data for for the manuscript: https://www.biorxiv.org/content/10.1101/861757v1
 
-The repository contains 5 main parts.
+The repository contains 4 main parts.
 
 * Thickness segmentation
 * Thickness map calculation
 * Thickness prediction
 * SSL Kaggle
-* Retinal screening evaluation
 
 ## Getting Started
-
-To set up a working example, clone the github repository and install all software requirements listed in the requirements.txt. Main tools used are Python and Tensorflow.
+To set up a working example, clone the github repository and install all software requirements listed in the requirements.txt. Main tools used are Python and Tensorflow. Installing within an Anaconda enviroment is recommended.
 
 In order to run illustrative examples four downloads are required from: https://doi.org/10.5281/zenodo.3626020
 
@@ -30,34 +30,39 @@ Below are the four necessary file to download:
 
 Once repository is set up locally with all code and correctly placed data, follow below instructions for each step.
 
-#### Thickness segmentation
+## Thickness segmentation
 
-In the folder ./thickness_segmentation/data please locate all images and segmentation masks in the ~/all_images and ~/all_labels folder.
+Find all images and segmentation masks used in ./thickness_segmentation/data.
 
-In the ~/file_names_complete folder please place 3 .csv files containing the file id's for train, validation and test image named:
+The program uses filenames to read the records, see ~/data/file_names_complete folder. The records are pre split between train, validation and test for easy validation.
 
-* test_new_old_mapping.csv
-* train_new_old_mapping.csv
-* validation_new_old_mapping.csv
+* ~/data/file_names_complete/test_new_old_mapping.csv
+* ~/data/file_names_complete/train_new_old_mapping.csv
+* ~/data/file_names_complete/validation_new_old_mapping.csv
 
-These csv files should contain a column names "new_id" which contains correspond to the image ids present in the ~/all_images and ~/all_labels folders.
+These csv files contain a column named "new_id" which contains correspond to the image ids present in the record folders.
 
-Note: The algorithm is trained on OCT images from both Spectralis and Topcon devices. Hence the different .csv mapping different id's in the ~/data directory. Here one can change the logic of reading in files by editing the main.py and python_generator.py python files.
+Note: The algorithm is trained on OCT images from both Spectralis and Topcon devices. Which images were obtained with each device is present in the ~/data/file_names_spectralis and ~/data/file_names_topcon folder.
 
-To train the algorithm, run the main.py file with parameters set in the params.json config file (learning rate, epochs among others, see params.json).
+The Topcon images were obtained from the following publication: Menke, M. N., Dabov, S., Knecht, P. & Sturm, V. Reproducibility of retinal thickness measurements in patients with age-related macular degeneration using 3D Fourier-domain optical coherence tomography (OCT) (Topcon 3D-OCT 1000). Acta Ophthalmol. 89, 346–351 (2011)
 
-The main.py file creates a model directory in the ~/logs directory. To evaluate the model, run evaluation.py with specified model directory directly in the python program. The evaluation.py program will mainly do two things.
+To re-train the algorithm, run the main.py file with parameters set in the params.json config file (learning rate, epochs among others, see params.json).
 
-* save plots of OCT, annotation and predicted annotation mask in the ~/model_dir/test_predictions folder. 
+The main.py file creates a model directory in the ~/logs directory. To evaluate the trained model, run evaluation.py with specified model directory directly in the python program. The evaluation.py program will mainly do two things.
+
+* save plots of OCT, grount truth annotations and predicted annotations masks in the ~/logs/model_dir/test_predictions folder. 
 * save a result.csv file logging the IOU score for each induvidual test record, later to be used for plotting.
 
-#### Thickness map calculation
+## Thickness map calculation
 
-To calculate high resolution thickness maps based on OCT DICOM exports store all DICOM files the ~/data directory. In the example directory in this repository the ~/data folder contains subfolders with the following names:
+To calculate high resolution thickness maps based on OCT DICOM exports store all DICOM files in the ~/thickness_map_calculation/data directory. This code repository contains two examples DICOM files, enabling excecution of code and instruction on how to store the DICOM files one wishes to convert into thickness maps. 
+In ~/thickness_map_calculation/data one finds subfolders with the following names:
 
 * PatientPseudoID_Laterality_StudyDate
 
 Where Patient pseudo ID is a randomized ID given to a patient at the time of data export. Laterality referring to the Right or the Left eye and StudyDate being the date of the eye examination.
+
+While these two DICOM files are real examples, they have been completetely anonymized and all patient specific information removed. 
 
 In the ~/output directory, place the trained weights for the OCT segmentation algorithm obtained in the thickness segmentation task.
 
@@ -78,7 +83,7 @@ To generate the tv_ps.csv run log_tv.py and ensure that the path to the calculat
 
 With the example DICOM files provided all have a total variation below the threshold of 0.014 which corresponds to 4.19 micro meters as stated in the manuscript. 
 
-#### Thickness map prediction
+## Thickness map prediction
 
 In order to run the Thickness prediction model (DeepRT) place all your coregistered fundus images and thickness maps in ~/data/fundus and ~/data/thickness_maps as in data sample provide. Further in ~/data/filenames provide .csv files for train, validation and test samples as in test sample. 
 
@@ -90,7 +95,7 @@ To evaluate the model and produce all the test statistics used for the plots in 
 
 Note: in order to produce results on thickness prediction test errors for edema and atrophy cases, put the file gold_standard.csv in the ~/data/gold_standard directory, see test data for example format. Important here is that the file names are of the same format as in other examples.  
 
-#### Transfer learning onto the Kaggle Diabetic Retinopathy data set
+## Transfer learning onto the Kaggle Diabetic Retinopathy data set
 
 In order to run the evaluation of transferring DeepRT weights vs. random and Imagenet initialization the first step is to download the data publicly available at: https://www.kaggle.com/c/diabetic-retinopathy-detection/data.
 
