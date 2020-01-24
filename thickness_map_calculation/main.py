@@ -3,7 +3,7 @@ import os
 import numpy as np
 import cv2
 import glob
-from model import get_unet
+from model import get_deep_unet
 from segmentations import Segmentations
 from dicom_table import DicomTable
 from map import Map
@@ -18,7 +18,7 @@ params["segmentation_model_path"] = "./output/"
 params["thickness_map_path"] = "./thickness_maps"
 
 # oct image dimensions -  should be same used in thickness segmentation
-params["img_shape"] = (256, 256, 3)
+params["img_shape"] = (512, 512, 3)
 
 # save oct and segmentation in dicom dir
 params["save_octs"] = True
@@ -27,6 +27,12 @@ params["save_segmentations"] = True
 # setting thickness map dim to 128 pixels
 params["thickness_map_dim"] = 128
 
+# set model paramaters
+params["n_filters"] = 32
+params["batchnorm"] = True
+params["dropout"] = 0.2
+params["is_training"] = False
+
 # retrieve full paths to dicom files
 dicom_paths = glob.glob(dicom_path+"/*/*.dcm")
 
@@ -34,8 +40,7 @@ dicom_paths = glob.glob(dicom_path+"/*/*.dcm")
 save_model_path = os.path.join(params["segmentation_model_path"], "weights.hdf5")
 
 # load model config and weights
-input_img = Input( params["img_shape"], name = 'img' )
-model = get_unet(input_img, n_filters = 12)
+model = get_deep_unet(params)
 model.load_weights(save_model_path, by_name = True, skip_mismatch=True)
 
 # iterate through dicom files and generate map for each
@@ -48,7 +53,7 @@ for dicom_path in dicom_paths:
     if dicom.record_lookup is not None:
 
         # retrieve all segmentations
-        segmentations = Segmentations(dicom, model)
+        segmentations = Segmentations(dicom, model, params)
 
         # set path in dicom dir to save octs
         dicom_dir = "/".join(dicom_path.split( "/" )[:-1])

@@ -2,14 +2,15 @@ import cv2
 import numpy as np
 import os
 
-
 class Segmentations():
 
-    def __init__(self, dicom, model):
+    def __init__(self, dicom, model, params):
         self.oct_images = None
         self.dicom = dicom
         self.model = model
+        self.params = params
         self.oct_segmentations = self.get_oct_and_segmentation()
+
 
     def save_segmentations(self, save_path):
         '''
@@ -69,10 +70,11 @@ class Segmentations():
                 stacked_img = self.oct_images[i, :, :]
 
             # resize and scale stacked image
-            resized_image = cv2.resize( stacked_img, (256, 256), interpolation = cv2.INTER_NEAREST) / 255.
+            resized_image = cv2.resize( stacked_img, (self.params["img_shape"][0], self.params["img_shape"][0]),
+                                        interpolation = cv2.INTER_NEAREST) / 255.
 
             # reshape image for prediction and predict
-            reshaped_image = resized_image.reshape( 1, 256, 256, 3 )
+            reshaped_image = resized_image.reshape( 1, self.params["img_shape"][0], self.params["img_shape"][0], 3 )
             prediction = cv2.resize( self.model.predict(reshaped_image)[0, :, :, 0],
                                      (orig_width, orig_height),
                                      interpolation = cv2.INTER_NEAREST)
