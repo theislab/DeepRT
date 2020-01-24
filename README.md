@@ -55,7 +55,7 @@ The main.py file creates a model directory in the ~/logs directory. To evaluate 
 
 ## Thickness map calculation
 
-To calculate high resolution thickness maps based on OCT DICOM exports store all DICOM files the ~/thickness_map_calculation/data directory. This code repository contains two examples DICOM files, enabling excecution of code and instruction on how to store the DICOM files one wishes to convert into thickness maps. 
+To calculate high resolution thickness maps based on OCT DICOM exports store all DICOM files in the ~/thickness_map_calculation/data directory. This code repository contains two examples DICOM files, enabling excecution of code and instruction on how to store the DICOM files one wishes to convert into thickness maps. 
 In ~/thickness_map_calculation/data one finds subfolders with the following names:
 
 * PatientPseudoID_Laterality_StudyDate
