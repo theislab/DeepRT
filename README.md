@@ -11,7 +11,7 @@ The repository contains 5 main parts.
 * Retinal screening evaluation
 
 ## Getting Started
-
+===========
 To set up a working example, clone the github repository and install all software requirements listed in the requirements.txt. Main tools used are Python and Tensorflow.
 
 In order to run illustrative examples four downloads are required from: https://doi.org/10.5281/zenodo.3626020
