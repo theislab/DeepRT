@@ -1,6 +1,6 @@
 # Self Supervised Retinal Thickness prediction using Deep Learning
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 The repository contains the code and partial data for for the manuscript: https://www.biorxiv.org/content/10.1101/861757v1
 
