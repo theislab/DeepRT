@@ -18,7 +18,7 @@ params["segmentation_model_path"] = "./output/"
 params["thickness_map_path"] = "./thickness_maps"
 
 # oct image dimensions -  should be same used in thickness segmentation
-params["img_shape"] = (512, 512, 3)
+params["img_shape"] = (256, 256, 3)
 
 # save oct and segmentation in dicom dir
 params["save_octs"] = True
