@@ -1,5 +1,5 @@
 params = {}
-params["img_shape"] = (512, 512, 3)
+params["img_shape"] = (256, 256, 3)
 params["batch_size"] = 2
 params["epochs"] = 1
 params["learning_rate"] = 0.001
