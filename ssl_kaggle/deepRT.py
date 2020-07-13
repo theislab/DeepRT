@@ -56,13 +56,12 @@ def resnet_layer(inputs,
 def DeepRT(params, n=2, num_classes=5):
     depth = n * 9 + 2
 
-    if (depth - 2) % 9 != 0:
-        raise ValueError('depth should be 9n+2 (eg 56 or 110 in [b])')
     # Start model definition.
     num_filters_in = 8
     num_res_blocks = int((depth - 2) / 9)
 
     inputs = Input(shape=(params.img_shape, params.img_shape,3))
+
     # v2 performs Conv2D with BN-ReLU on input before splitting into 2 paths
     x = resnet_layer(inputs=inputs,
                      num_filters=num_filters_in,

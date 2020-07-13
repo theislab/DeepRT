@@ -13,7 +13,7 @@ from sklearn.metrics import log_loss
 from sklearn.metrics import cohen_kappa_score
 from sklearn.metrics import balanced_accuracy_score
 import keras
-from deepRT import DeepRT
+from ssl_kaggle.deepRT import DeepRT
 
 
 class Params():
