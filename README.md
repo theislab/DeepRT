@@ -2,7 +2,7 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4116029.svg)](https://doi.org/10.5281/zenodo.4116029)
 
 The repository contains the code and partial data for for the manuscript: https://www.biorxiv.org/content/10.1101/861757v1
 
