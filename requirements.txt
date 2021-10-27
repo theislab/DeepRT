@@ -5,7 +5,7 @@ certifi==2019.11.28
 cloudpickle==1.2.2
 cycler==0.10.0
 cytoolz==0.10.1
-dask==2.9.2
+dask==2021.10.0
 decorator==4.4.1
 efficientnet==1.0.0
 gast==0.2.2
